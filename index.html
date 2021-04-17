@@ -2,6 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
     <title>体調報告自動入力URL生成</title>
 </head>
 <body>
@@ -52,24 +53,27 @@
 <div>
     <label for="name_is_bad_condition">体調が悪い場合: </label>
     <select id="name_is_bad_condition">
+        <option>該当なし</option>
         <option>喉が痛い</option>
         <option>咳が出る</option>
         <option>痰が出る・痰がからむ</option>
         <option>鼻づまり・鼻水</option>
         <option>体がおもい・だるい</option>
         <option>嗅覚・味覚がおかしい</option>
-        <option>該当なし</option>
     </select>
 </div>
 <div>
     <label for="name_is_bad_family_condition">家族が体調悪い？: </label>
     <select id="name_is_bad_family_condition">
-        <option>はい</option>
         <option>いいえ</option>
+        <option>はい</option>
     </select>
 </div>
-<input type="button" value="URL生成" id="checkButton">
-<p id="msg"></p>
+<div>
+    <input type="button" value="URL生成" id="checkButton">
+    <label for="url">URL:</label><input type="text" id="url">
+    <input type="button" value="コピー" id="urlcopy">
+</div>
 
 <script>
     let name_bu = document.getElementById('name_bu');
@@ -84,10 +88,10 @@
     let checkButton = document.getElementById('checkButton');
     let msg = document.getElementById('msg');
 
-    function buttonClick() {
+    function urlGenerate() {
         // いいえ
-        msg.innerText = "URL: "
-            + "https://docs.google.com/forms/d/e/1FAIpQLSe9Zr3TqZ98pwU6XNRBF4ZthYw2TbFqfVPhRinndtSTYcwWZg/viewform?usp=pp_url"
+        msg.value =
+            "https://docs.google.com/forms/d/e/1FAIpQLSe9Zr3TqZ98pwU6XNRBF4ZthYw2TbFqfVPhRinndtSTYcwWZg/viewform?usp=pp_url"
             + "&entry.2079235297=" + name_bu.value
             + "&entry.865084182=" + name_gakunen.value
             + "&entry.647827530=" + name_dansi_kumi.value
@@ -99,7 +103,13 @@
             + "&entry.1026424202=" + name_is_bad_family_condition.value;
     }
 
-    checkButton.addEventListener('click', buttonClick);
+    function urlCopy() {
+        msg.select();
+        document.execCommand("copy");
+    }
+
+    checkButton.addEventListener('click', urlGenerate);
+    checkButton.addEventListener('click', urlCopy);
 </script>
 </body>
 </html>
