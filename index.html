@@ -86,11 +86,11 @@
     let name_is_bad_condition = document.getElementById('name_is_bad_condition');
     let name_is_bad_family_condition = document.getElementById('name_is_bad_family_condition');
     let checkButton = document.getElementById('checkButton');
-    let msg = document.getElementById('msg');
+    let url = document.getElementById('url');
 
     function urlGenerate() {
         // いいえ
-        msg.value =
+        url.value =
             "https://docs.google.com/forms/d/e/1FAIpQLSe9Zr3TqZ98pwU6XNRBF4ZthYw2TbFqfVPhRinndtSTYcwWZg/viewform?usp=pp_url"
             + "&entry.2079235297=" + name_bu.value
             + "&entry.865084182=" + name_gakunen.value
@@ -104,7 +104,7 @@
     }
 
     function urlCopy() {
-        msg.select();
+        url.select();
         document.execCommand("copy");
     }
 
